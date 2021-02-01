@@ -46,7 +46,7 @@
                                             {{$category->description}}
                                         </td>
                                         <td>
-                                            <button onclick="edit({{$category->id}})" class="btn btn-primary btn-sm">Edit</button>
+                                            <button wire:click="edit({{$category->id}})" class="btn btn-primary btn-sm">Edit</button>
                                             <button onclick="deleteCategory({{$category->id}})" class="btn btn-danger btn-sm">Delete</button>
                                         </td>
                                     </tr>
@@ -66,10 +66,6 @@
     </div>
 
     <script>
-        function edit(id){
-            window.livewire.emit('editCategory',id);
-        }
-
         function deleteCategory(id){
             if(confirm("Are you sure to delete this record?"))
                 window.livewire.emit('deleteCategory',id);

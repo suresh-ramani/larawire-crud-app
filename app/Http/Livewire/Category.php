@@ -11,8 +11,7 @@ class Category extends Component
     public $updateCategory = false;
 
     protected $listeners = [
-        'editCategory'=>'edit',
-        'deleteCategory'=>'destroy',
+        'deleteCategory'=>'destroy'
     ];
 
     // Validation Rules
