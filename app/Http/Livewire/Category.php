@@ -23,6 +23,7 @@ class Category extends Component
     public function render()
     {
         $this->categories = Categories::select('id','name','description')->get();
+        
         return view('livewire.category');
     }
 
@@ -32,7 +33,6 @@ class Category extends Component
     }
 
     public function store(){
-
         // Validate Form Request
         $this->validate();
 
@@ -44,13 +44,21 @@ class Category extends Component
             ]);
     
             // Set Flash Message
-            session()->flash('success','Category Created Successfully!!');
+            //session()->flash('success','Category Created Successfully!!');
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'success',
+                'message'=>"Category Created Successfully!!"
+            ]);
 
             // Reset Form Fields After Creating Category
             $this->resetFields();
         }catch(\Exception $e){
             // Set Flash Message
-            session()->flash('error','Something goes wrong while creating category!!');
+            //session()->flash('error','Something goes wrong while creating category!!');
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'error',
+                'message'=>"Something goes wrong while creating category!!"
+            ]);
 
             // Reset Form Fields After Creating Category
             $this->resetFields();
@@ -84,11 +92,19 @@ class Category extends Component
                 'description'=>$this->description
             ])->save();
 
-            session()->flash('success','Category Updated Successfully!!');
+            //session()->flash('success','Category Updated Successfully!!');
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'success',
+                'message'=>"Category Updated Successfully!!"
+            ]);
     
             $this->cancel();
         }catch(\Exception $e){
-            session()->flash('error','Something goes wrong while updating category!!');
+            //session()->flash('error','Something goes wrong while updating category!!');
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'error',
+                'message'=>"Something goes wrong while updating category!!"
+            ]);
             $this->cancel();
         }
     }
@@ -96,9 +112,17 @@ class Category extends Component
     public function destroy($id){
         try{
             Categories::find($id)->delete();
-            session()->flash('success',"Category Deleted Successfully!!");
+            //session()->flash('success',"Category Deleted Successfully!!");
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'success',
+                'message'=>"Category Deleted Successfully!!"
+            ]);
         }catch(\Exception $e){
-            session()->flash('error',"Something goes wrong while deleting category!!");
+            //session()->flash('error',"Something goes wrong while deleting category!!");
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'success',
+                'message'=>"Something goes wrong while deleting category!!"
+            ]);
         }
     }
 }

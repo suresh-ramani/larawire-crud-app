@@ -1,5 +1,5 @@
 <div>
-    <div class="col-md-8 mb-2">
+    <div class="col-md-12 mb-2">
         <div class="card">
             <div class="card-body">
                 @if(session()->has('success'))
@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">

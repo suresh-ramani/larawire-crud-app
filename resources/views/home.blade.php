@@ -18,7 +18,7 @@
 
     <div class="container">
         <div class="row justify-content-center mt-3">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header text-center">
                         <h2>Livewire Crud Example - TechvBlogs</h2>
@@ -33,5 +33,29 @@
     </div>
     
     @livewireScripts
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            showCloseButton: true,
+            timer: 5000,
+            timerProgressBar:true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
+        window.addEventListener('alert',({detail:{type,message}})=>{
+            Toast.fire({
+                icon:type,
+                title:message
+            })
+        })
+    </script>
 </body>
 </html>
